@@ -47,14 +47,14 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
         </div>
       </div>
 
-      <div className={` w-full`}>
+      <div className={` h-full w-full flex flex-col`}>
         <div className="w-full p-4 flex bg-light-primary dark:bg-dark-primary ">
           <div className="w-1/3  ">
             <SearchBar />
           </div>
           <button onClick={() => setDarkToggle(!darkToggle)}>Toggle</button>
         </div>
-        <div className="pl-4 bg-light-secondary h-full dark:bg-dark-secondary dark:text-white">
+        <div className="pl-4 bg-light-secondary flex flex-1 dark:bg-dark-secondary dark:text-white">
           {children}
         </div>
       </div>
