@@ -1,14 +1,18 @@
-import { ReactNode, createContext, useContext } from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 interface AuthContextInterface {
   handleLogin: () => void;
   handleLogout: () => void;
+  darkToggle: boolean;
+  setDarkToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const AuthContext = createContext<AuthContextInterface>(
   {} as AuthContextInterface
 );
 
 export const AuthWrapper = ({ children }: { children: ReactNode }) => {
+  const [darkToggle, setDarkToggle] = useState(false);
+
   const [_cookies, setCookie, removeCookie] = useCookies(["authToken"]);
   const handleLogin = () => {
     // Simulating a successful login by setting the authToken in cookies
@@ -21,7 +25,9 @@ export const AuthWrapper = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ handleLogin, handleLogout }}>
+    <AuthContext.Provider
+      value={{ handleLogin, handleLogout, darkToggle, setDarkToggle }}
+    >
       {children}
     </AuthContext.Provider>
   );

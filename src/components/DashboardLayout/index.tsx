@@ -1,14 +1,15 @@
-import { ReactNode } from "react";
 import { withAuth } from "../../contexts/AuthContext";
+import React, { useState, ReactNode } from "react";
 import {
-  GrProjects,
-  GrNotification,
-  GrSettingsOption,
-  GrLogout,
-} from "react-icons/gr";
-import { BsFillPeopleFill } from "react-icons/bs";
+  BsFillPeopleFill,
+  BsDashCircle,
+  BsBell,
+  BsGear,
+  BsDoorClosed,
+} from "react-icons/bs";
 import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import type { IconType } from "react-icons";
+import { SearchBar } from "../SearchBar";
 const NavItem = ({
   Icon,
   label,
@@ -29,23 +30,32 @@ const NavItem = ({
 };
 
 export const DashboardLayout = ({ children }: { children: ReactNode }) => {
-  const { handleLogout } = withAuth();
+  const { handleLogout, darkToggle, setDarkToggle } = withAuth();
+
   return (
-    <div className="bg-gray-300 h-full flex">
-      <div className="bg-white w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10">
+    <div className={`h-full flex ${darkToggle ? "dark" : ""}`}>
+      <div className="bg-light-primary dark:bg-dark-primary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-white">
         <div className="flex flex-col gap-3 ">
-          <NavItem Icon={GrProjects} label="Projects" />
+          <NavItem Icon={BsDashCircle} label="Projects" />
           <NavItem Icon={BsFillPeopleFill} label="Clients" />
-          <NavItem Icon={GrNotification} label="Notifications" />
+          <NavItem Icon={BsBell} label="Notifications" />
           <NavItem Icon={TbBrandGoogleAnalytics} label="Analytics" />
-          <NavItem Icon={GrSettingsOption} label="Settings" />
+          <NavItem Icon={BsGear} label="Settings" />
         </div>
         <div>
-          <NavItem Icon={GrLogout} label="logout" onClick={handleLogout} />
+          <NavItem Icon={BsDoorClosed} label="logout" onClick={handleLogout} />
         </div>
       </div>
 
-      <div>{children}</div>
+      <div className={` w-full`}>
+        <div className="w-full p-4 flex bg-light-primary dark:bg-dark-primary ">
+          <div className="w-1/3  ">
+            <SearchBar />
+          </div>
+          <button onClick={() => setDarkToggle(!darkToggle)}>Toggle</button>
+        </div>
+        <div className="ml-4">{children}</div>
+      </div>
     </div>
   );
 };
