@@ -34,7 +34,7 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className={`h-full flex ${darkToggle ? "dark" : ""}`}>
-      <div className="bg-light-primary dark:bg-dark-primary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-white">
+      <div className="bg-light-primary dark:bg-dark-primary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
         <div className="flex flex-col gap-3 ">
           <NavItem Icon={BsDashCircle} label="Projects" />
           <NavItem Icon={BsFillPeopleFill} label="Clients" />
@@ -54,7 +54,9 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
           </div>
           <button onClick={() => setDarkToggle(!darkToggle)}>Toggle</button>
         </div>
-        <div className="ml-4">{children}</div>
+        <div className="pl-4 bg-light-secondary h-full dark:bg-dark-secondary dark:text-white">
+          {children}
+        </div>
       </div>
     </div>
   );
