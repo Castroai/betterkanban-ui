@@ -1,7 +1,16 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { useCookies } from "react-cookie";
+import { httpService } from "../../services/httpService";
 interface AuthContextInterface {
-  handleLogin: () => void;
+  handleLogin: ({
+    email,
+    password,
+    name,
+  }: {
+    email: string;
+    password: string;
+    name: string;
+  }) => Promise<void>;
   handleLogout: () => void;
   darkToggle: boolean;
   setDarkToggle: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,9 +23,22 @@ export const AuthWrapper = ({ children }: { children: ReactNode }) => {
   const [darkToggle, setDarkToggle] = useState(false);
 
   const [_cookies, setCookie, removeCookie] = useCookies(["authToken"]);
-  const handleLogin = () => {
+  const handleLogin = async ({
+    email,
+    password,
+    name,
+  }: {
+    email: string;
+    password: string;
+    name: string;
+  }) => {
+    const { data } = await httpService.post("register", {
+      email,
+      name,
+      password,
+    });
     // Simulating a successful login by setting the authToken in cookies
-    setCookie("authToken", "your-auth-token-goes-here", { path: "/" });
+    setCookie("authToken", data, { path: "/" });
   };
 
   const handleLogout = () => {
