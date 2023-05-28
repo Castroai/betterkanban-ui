@@ -9,16 +9,16 @@ theme: {
   extend: {
     colors: {
       light: {
-        primary: '#00A1E0', // Salesforce Blue
-        secondary: '#EFD43C', // Salesforce Yellow
-        accent: '#7FBA00', // Salesforce Green
-        text: '#000000', // Black
+        primary: '#709CA3',
+        secondary: '#FFFFFF', 
+        accent: '#7FBA00', 
+        text: '#000000', 
       },
       dark: {
-        primary: '#1E4E79', // Dark Blue
-        secondary: '#B08800', // Dark Yellow
-        accent: '#546A29', // Dark Green
-        text: '#FFFFFF', // White
+        primary: '#15616D', 
+        secondary: '#3e3e42', 
+        accent: '#546A29', 
+        text: '#FFFFFF', 
       },
     },
   },
