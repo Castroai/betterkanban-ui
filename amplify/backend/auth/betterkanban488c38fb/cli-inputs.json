@@ -25,19 +25,15 @@
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [
-      "email"
-    ],
-    "userpoolClientReadAttributes": [
-      "email"
-    ],
+    "userpoolClientWriteAttributes": [],
+    "userpoolClientReadAttributes": [],
     "userpoolClientLambdaRole": "better488c38fb_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
     "sharedId": "488c38fb",
     "resourceName": "betterkanban488c38fb",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
-    "hostedUI": false,
+    "useDefault": "manual",
+    "hostedUI": true,
     "usernameAttributes": [
       "email"
     ],
@@ -59,6 +55,15 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "authProviders": []
+    "authProviders": [],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "thirdPartyAuth": false,
+    "hostedUIDomainName": "pgx5rgmundzh",
+    "authProvidersUserPool": [
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://betterkanban.com\"],\"LogoutURLs\":[\"https://betterkanban.com\"]}"
   }
 }
