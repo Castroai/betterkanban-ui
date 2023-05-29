@@ -8,7 +8,7 @@ const ThemeContext = createContext<ThemeContextInterface>(
   {} as ThemeContextInterface
 );
 
-export const AuthWrapper = ({ children }: { children: ReactNode }) => {
+export const ThemeWrapper = ({ children }: { children: ReactNode }) => {
   const [darkToggle, setDarkToggle] = useState(false);
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-// import { AuthWrapper } from "./contexts/AuthContext/index.tsx";
+import { ThemeWrapper } from "./contexts/ThemeContext";
 import { Authenticator } from "@aws-amplify/ui-react";
 
 import { BrowserRouter } from "react-router-dom";
@@ -16,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <Authenticator.Provider>
-        <Router />
+        <ThemeWrapper>
+          <Router />
+        </ThemeWrapper>
       </Authenticator.Provider>
     </BrowserRouter>
   </React.StrictMode>
