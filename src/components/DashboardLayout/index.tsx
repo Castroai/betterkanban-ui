@@ -1,5 +1,4 @@
 import { withTheme } from "../../contexts/ThemeContext";
-import { ReactNode } from "react";
 import {
   BsFillPeopleFill,
   BsDashCircle,
