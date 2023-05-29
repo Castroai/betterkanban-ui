@@ -41,7 +41,7 @@ export const DashboardLayout = () => {
 
   const logOut = () => {
     signOut();
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className={`h-full flex ${darkToggle ? "dark" : ""}`}>
