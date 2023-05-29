@@ -4,10 +4,11 @@ import { useNavigate, useLocation } from "react-router";
 import "@aws-amplify/ui-react/styles.css";
 
 const Login = () => {
-  const { route } = useAuthenticator((context) => [context.route]);
+  const { route, user } = useAuthenticator((context) => [context.route]);
   const location = useLocation();
   const navigate = useNavigate();
   let from = location.state?.from?.pathname || "/";
+  console.log(user);
   useEffect(() => {
     if (route === "authenticated") {
       navigate(from, { replace: true });

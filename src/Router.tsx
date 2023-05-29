@@ -9,7 +9,7 @@ export const Router = () => {
       <Route element={<ProtectedRoute />}>
         <Route index element={<Dashboard />} />
       </Route>
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="login" element={<LoginPage />} />
     </Routes>
   );
 };
