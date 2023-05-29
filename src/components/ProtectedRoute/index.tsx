@@ -1,15 +1,15 @@
-import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { DashboardLayout } from "../DashboardLayout";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import Login from "../../pages/Login";
 const ProtectedRoute = () => {
-  const location = useLocation();
   const { route } = useAuthenticator((context) => [context.route]);
   return route == "authenticated" ? (
     <DashboardLayout>
       <Outlet />
     </DashboardLayout>
   ) : (
-    <Navigate to={"/login"} state={{ from: location }} replace />
+    <Login />
   );
 };
 
