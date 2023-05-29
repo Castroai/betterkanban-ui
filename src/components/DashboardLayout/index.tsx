@@ -11,7 +11,7 @@ import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import type { IconType } from "react-icons";
 import { SearchBar } from "../SearchBar";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 const NavItem = ({
   Icon,
   label,
@@ -31,7 +31,7 @@ const NavItem = ({
   );
 };
 
-export const DashboardLayout = ({ children }: { children: ReactNode }) => {
+export const DashboardLayout = () => {
   const { darkToggle, setDarkToggle } = withTheme();
   const { signOut } = useAuthenticator((context) => [
     context.route,
@@ -66,7 +66,7 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
           <button onClick={() => setDarkToggle(!darkToggle)}>Toggle</button>
         </div>
         <div className="pl-4 bg-light-primary flex flex-1 dark:bg-dark-primary dark:text-white">
-          {children}
+          <Outlet />
         </div>
       </div>
     </div>
