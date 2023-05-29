@@ -15,7 +15,7 @@ const Login = () => {
   }, [route, navigate, from]);
   return (
     <div className="flex items-center justify-center h-full">
-      <Authenticator />
+      <Authenticator socialProviders={["google"]} />
     </div>
   );
 };
