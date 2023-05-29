@@ -8,9 +8,9 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t betterkanban-dev .
+      - docker build -t betterkanban-ui-dev .
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker tag betterkanban-dev:latest public.ecr.aws/f1z9f8i1/betterkanban-ui-dev:latest
+      - docker tag betterkanban-ui-dev:latest public.ecr.aws/f1z9f8i1/betterkanban-ui-dev:latest
       - docker push public.ecr.aws/f1z9f8i1/betterkanban-ui-dev:latest
