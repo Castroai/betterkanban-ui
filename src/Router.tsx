@@ -13,4 +13,6 @@ const Router = () => {
   );
 };
 
-export default withAuthenticator(Router);
+export default withAuthenticator(Router, {
+  socialProviders: ["google"],
+});
