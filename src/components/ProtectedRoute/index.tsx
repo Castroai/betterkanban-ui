@@ -1,16 +1,15 @@
-import { Outlet, Navigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { DashboardLayout } from "../DashboardLayout";
-
+import { useAuthenticator } from "@aws-amplify/ui-react";
 const ProtectedRoute = () => {
-  const [cookies] = useCookies(["authToken"]);
-
-  return cookies.authToken ? (
+  const location = useLocation();
+  const { route } = useAuthenticator((context) => [context.route]);
+  return route == "authenticated" ? (
     <DashboardLayout>
       <Outlet />
     </DashboardLayout>
   ) : (
-    <Navigate to={"/login"} />
+    <Navigate to={"/login"} state={{ from: location }} replace />
   );
 };
 

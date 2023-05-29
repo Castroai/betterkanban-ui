@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { withAuth } from "../../contexts/AuthContext";
+import { withAuth } from "../../contexts/ThemeContext";
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { Input } from "../UI/Input";
 import { Button } from "../UI/Button";

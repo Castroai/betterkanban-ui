@@ -1,4 +1,4 @@
-import { withAuth } from "../../contexts/AuthContext";
+import { withTheme } from "../../contexts/ThemeContext";
 import { ReactNode } from "react";
 import {
   BsFillPeopleFill,
@@ -10,6 +10,8 @@ import {
 import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import type { IconType } from "react-icons";
 import { SearchBar } from "../SearchBar";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { useNavigate } from "react-router-dom";
 const NavItem = ({
   Icon,
   label,
@@ -30,8 +32,17 @@ const NavItem = ({
 };
 
 export const DashboardLayout = ({ children }: { children: ReactNode }) => {
-  const { handleLogout, darkToggle, setDarkToggle } = withAuth();
+  const { darkToggle, setDarkToggle } = withTheme();
+  const { signOut } = useAuthenticator((context) => [
+    context.route,
+    context.signOut,
+  ]);
+  const navigate = useNavigate();
 
+  const logOut = () => {
+    signOut();
+    navigate("/login");
+  };
   return (
     <div className={`h-full flex ${darkToggle ? "dark" : ""}`}>
       <div className="bg-light-secondary dark:bg-dark-secondary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
@@ -43,7 +54,7 @@ export const DashboardLayout = ({ children }: { children: ReactNode }) => {
           <NavItem Icon={BsGear} label="Settings" />
         </div>
         <div>
-          <NavItem Icon={BsDoorClosed} label="logout" onClick={handleLogout} />
+          <NavItem Icon={BsDoorClosed} label="logout" onClick={logOut} />
         </div>
       </div>
 

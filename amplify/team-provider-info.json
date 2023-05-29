@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-betterkanban-dev-105011-authRole",
+      "UnauthRoleArn": "arn:aws:iam::573687461965:role/amplify-betterkanban-dev-105011-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::573687461965:role/amplify-betterkanban-dev-105011-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-betterkanban-dev-105011-deployment",
+      "UnauthRoleName": "amplify-betterkanban-dev-105011-unauthRole",
+      "StackName": "amplify-betterkanban-dev-105011",
+      "StackId": "arn:aws:cloudformation:us-east-1:573687461965:stack/amplify-betterkanban-dev-105011/1c1ea890-fe30-11ed-847f-12fff72aaad9",
+      "AmplifyAppId": "d2ypbirhh02t8m"
+    },
+    "categories": {
+      "auth": {
+        "betterkanban488c38fb": {}
+      }
+    }
+  }
+}
