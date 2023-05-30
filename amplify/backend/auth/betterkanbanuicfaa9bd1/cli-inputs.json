@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "betterkanban488c38fb_identitypool_488c38fb",
+    "identityPoolName": "betterkanbanuicfaa9bd1_identitypool_cfaa9bd1",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "better488c38fb",
-    "userPoolName": "betterkanban488c38fb_userpool_488c38fb",
+    "resourceNameTruncated": "bettercfaa9bd1",
+    "userPoolName": "betterkanbanuicfaa9bd1_userpool_cfaa9bd1",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -25,18 +25,27 @@
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [],
-    "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "better488c38fb_userpoolclient_lambda_role",
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientLambdaRole": "bettercfaa9bd1_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "488c38fb",
-    "resourceName": "betterkanban488c38fb",
+    "sharedId": "cfaa9bd1",
+    "resourceName": "betterkanbanuicfaa9bd1",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "manual",
+    "useDefault": "defaultSocial",
     "hostedUI": true,
     "usernameAttributes": [
       "email"
     ],
+    "hostedUIDomainName": "betterkanbanuicfaa9bd1-cfaa9bd1",
+    "authProvidersUserPool": [
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -55,15 +64,6 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "authProviders": [],
-    "userPoolGroups": false,
-    "adminQueries": false,
-    "thirdPartyAuth": false,
-    "hostedUIDomainName": "pgx5rgmundzh",
-    "authProvidersUserPool": [
-      "Google"
-    ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://betterkanban.com\",\"http://localhost:5437\",\"https://www.betterkanban.com/\"],\"LogoutURLs\":[\"https://betterkanban.com\",\"http://localhost:5437\",\"https://www.betterkanban.com/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5437/\",\"https://www.betterkanban.com/\"],\"LogoutURLs\":[\"http://localhost:5437/\",\"https://www.betterkanban.com/\"]}"
   }
 }
