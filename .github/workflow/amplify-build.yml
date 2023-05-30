@@ -22,7 +22,7 @@ jobs:
       - name: Amplify Build
         run: |
           npm install -g @aws-amplify/cli
-          amplify init --app https://github.com/yourusername/your-amplify-project.git
+          amplify init --app https://github.com/Castroai/betterkanban-ui.git
           amplify configure --amplify-provider-region us-east-1
           amplify publish > amplify-build-log.txt
           
