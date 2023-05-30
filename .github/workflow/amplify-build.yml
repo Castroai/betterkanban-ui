@@ -1,0 +1,35 @@
+name: Amplify Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install AWS CLI
+        run: |
+          curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+
+      - name: Amplify Build
+        run: |
+          npm install -g @aws-amplify/cli
+          amplify init --app https://github.com/yourusername/your-amplify-project.git
+          amplify configure --amplify-provider-region us-east-1
+          amplify publish > amplify-build-log.txt
+          
+      - name: Commit build log
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add amplify-build-log.txt
+          git commit -m "Add Amplify build log"
+          git push

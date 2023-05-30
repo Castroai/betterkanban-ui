@@ -13,9 +13,8 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
 import { useEffect } from "react";
-import { httpService } from "../../services/httpService";
-import { Auth, Hub } from 'aws-amplify';
-import CognitoHostedUIIdentityProvider from 'amazon-cognito-identity-js'
+import { httpService } from "../../services/httpService"; 
+
 
 
 const NavItem = ({
