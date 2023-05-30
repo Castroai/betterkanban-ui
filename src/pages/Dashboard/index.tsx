@@ -16,6 +16,7 @@ export const Dashboard = () => {
   return (
     <div>
       <h1 className="text-2xl font-semibold">Hello good {timeOfDay}!</h1>
+      
     </div>
   );
 };

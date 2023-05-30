@@ -1,7 +1,7 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 interface ThemeContextInterface {
-  darkToggle: boolean;
+  isDarkMode: boolean;
   setDarkToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const ThemeContext = createContext<ThemeContextInterface>(
@@ -9,10 +9,17 @@ const ThemeContext = createContext<ThemeContextInterface>(
 );
 
 export const ThemeWrapper = ({ children }: { children: ReactNode }) => {
-  const [darkToggle, setDarkToggle] = useState(false);
+  const [isDarkMode, setDarkToggle] = useState(localStorage.getItem('theme')==='dark'?true:false);
 
+  useEffect(()=>{
+    if (isDarkMode){
+      localStorage.setItem('theme','dark')
+    } else {
+      localStorage.setItem('theme','light')
+    }
+  },[isDarkMode])
   return (
-    <ThemeContext.Provider value={{ darkToggle, setDarkToggle }}>
+    <ThemeContext.Provider value={{ isDarkMode, setDarkToggle }}>
       {children}
     </ThemeContext.Provider>
   );

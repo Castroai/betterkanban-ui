@@ -1,5 +1,20 @@
 import axios from "axios";
+import {Auth} from 'aws-amplify'
 
-export const httpService = axios.create({
+const httpService = axios.create({
   baseURL: "https://api.betterkanban.com/",
 });
+httpService.interceptors.request.use(
+  async config => {
+    const data = await Auth.currentSession()
+    const token = data.getAccessToken().getJwtToken()
+    if (token) {
+      config.headers.authorization = token
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+);
+export {httpService}

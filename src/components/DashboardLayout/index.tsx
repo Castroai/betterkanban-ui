@@ -11,6 +11,13 @@ import type { IconType } from "react-icons";
 import { SearchBar } from "../SearchBar";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
+import { useEffect } from "react";
+import { httpService } from "../../services/httpService";
+import { Auth, Hub } from 'aws-amplify';
+import CognitoHostedUIIdentityProvider from 'amazon-cognito-identity-js'
+
+
 const NavItem = ({
   Icon,
   label,
@@ -31,8 +38,8 @@ const NavItem = ({
 };
 
 export const DashboardLayout = () => {
-  const { darkToggle, setDarkToggle } = withTheme();
-  const { signOut } = useAuthenticator((context) => [
+  const { isDarkMode, setDarkToggle } = withTheme();
+  const { signOut, user } = useAuthenticator((context) => [
     context.route,
     context.signOut,
   ]);
@@ -42,8 +49,18 @@ export const DashboardLayout = () => {
     signOut();
     navigate("/");
   };
+
+
+  const fetchData = async () => {
+    await httpService.get('/')
+    console.log(`Authenticated to api successfully!`)
+  }
+  useEffect(() => {
+    fetchData()
+
+  }, [])
   return (
-    <div className={`h-full flex ${darkToggle ? "dark" : ""}`}>
+    <div className={`h-full flex ${isDarkMode ? "dark" : ""} `}>
       <div className="bg-light-secondary dark:bg-dark-secondary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
         <div className="flex flex-col gap-3 ">
           <NavItem Icon={BsDashCircle} label="Projects" />
@@ -57,12 +74,28 @@ export const DashboardLayout = () => {
         </div>
       </div>
 
-      <div className={` h-full w-full flex flex-col`}>
-        <div className="w-full p-4 flex bg-light-primary dark:bg-dark-primary ">
-          <div className="w-1/3  ">
+      <div className={` h-full w-full flex flex-col dark:text-dark-text`}>
+        <div className="w-full p-4 flex bg-light-primary dark:bg-dark-primary justify-between ">
+          {/* Search and toggle */}
+          <div className=" flex items-center gap-5 justify-start  ">
+
             <SearchBar />
+
+            <div className={`flex items-center ${isDarkMode ? "dark" : "light"}`}>
+              <button
+                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
+                onClick={() => { setDarkToggle(!isDarkMode) }}
+              >
+                {isDarkMode ? <BsBrightnessHighFill /> : <BsMoonFill />}
+              </button>
+            </div>
           </div>
-          <button onClick={() => setDarkToggle(!darkToggle)}>Toggle</button>
+          {/* Username */}
+          <div>
+            {user.attributes?.email}</div>
+        </div>
+        <div>
+
         </div>
         <div className="pl-4 bg-light-primary flex flex-1 dark:bg-dark-primary dark:text-white">
           <Outlet />
@@ -71,3 +104,5 @@ export const DashboardLayout = () => {
     </div>
   );
 };
+
+

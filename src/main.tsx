@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { ThemeWrapper } from "./contexts/ThemeContext";
 import { Authenticator } from "@aws-amplify/ui-react";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./Router.tsx";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
+import "./index.css";
 
 import awsExports from "./aws-exports";
 
