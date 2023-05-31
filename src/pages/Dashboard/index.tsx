@@ -20,7 +20,7 @@ export const Dashboard = () => {
     }
   };
   const timeOfDay = getTimeOfDay();
-  
+
 
   return (
     <div className="flex flex-1 flex-col gap-4">
