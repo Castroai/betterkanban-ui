@@ -9,13 +9,13 @@ theme: {
   extend: {
     colors: {
       light: {
-        primary: '#709CA3',
+        primary: '#3373C4',
         secondary: '#FFFFFF', 
         accent: '#7FBA00', 
         text: '#000000', 
       },
       dark: {
-        primary: '#15616D', 
+        primary: '#3373C4', 
         secondary: '#3e3e42', 
         accent: '#546A29', 
         text: '#FFFFFF', 

@@ -13,9 +13,9 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
 import { useEffect } from "react";
-import { httpService } from "../../services/httpService"; 
-
-
+import { httpService } from "../../services/httpService";
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const NavItem = ({
   Icon,
@@ -28,7 +28,7 @@ const NavItem = ({
 }) => {
   return (
     <div
-      className="flex items-center gap-3 cursor-pointer hover:bg-light-primary dark:hover:bg-dark-primary hover:rounded-md p-1 "
+      className="flex items-center gap-4 cursor-pointer hover:bg-light-primary dark:hover:bg-dark-primary hover:rounded-md p-1 "
       onClick={onClick}
     >
       <Icon /> {label}
@@ -61,7 +61,7 @@ export const DashboardLayout = () => {
   return (
     <div className={`h-full flex ${isDarkMode ? "dark" : ""} `}>
       <div className="bg-light-secondary dark:bg-dark-secondary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
-        <div className="flex flex-col gap-3 ">
+        <div className="flex flex-col gap-4 ">
           <NavItem Icon={BsDashCircle} label="Projects" />
           <NavItem Icon={BsFillPeopleFill} label="Clients" />
           <NavItem Icon={BsBell} label="Notifications" />
@@ -76,10 +76,8 @@ export const DashboardLayout = () => {
       <div className={` h-full w-full flex flex-col dark:text-dark-text`}>
         <div className="w-full p-4 flex bg-light-primary dark:bg-dark-primary justify-between ">
           {/* Search and toggle */}
-          <div className=" flex items-center gap-5 justify-start  ">
-
+          <div className=" flex items-center gap-4 justify-start  ">
             <SearchBar />
-
             <div className={`flex items-center ${isDarkMode ? "dark" : "light"}`}>
               <button
                 className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
@@ -96,8 +94,10 @@ export const DashboardLayout = () => {
         <div>
 
         </div>
-        <div className="pl-4 bg-light-primary flex flex-1 dark:bg-dark-primary dark:text-white">
-          <Outlet />
+        <div className="p-4 bg-light-primary flex flex-1 dark:bg-dark-primary ">
+          <DndProvider backend={HTML5Backend} >
+            <Outlet />
+          </DndProvider>
         </div>
       </div>
     </div>
