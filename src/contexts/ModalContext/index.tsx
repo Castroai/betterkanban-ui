@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useState, useContext, ReactNode } from 'react';
 
 // Define the type for our context value
 type ModalContextValue = {
