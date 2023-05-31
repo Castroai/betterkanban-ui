@@ -1,8 +1,10 @@
 import axios from "axios";
-import {Auth} from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 
 const httpService = axios.create({
-  baseURL: "https://api.betterkanban.com/",
+  // baseURL: "https://api.betterkanban.com/",
+  baseURL: "http://localhost:3000/"
+
 });
 httpService.interceptors.request.use(
   async config => {
@@ -17,4 +19,4 @@ httpService.interceptors.request.use(
     return Promise.reject(error)
   }
 );
-export {httpService}
+export { httpService }

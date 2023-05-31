@@ -10,6 +10,7 @@ import "./index.css";
 
 import awsExports from "./aws-exports";
 import { ModalProvider } from "./contexts/ModalContext/index.tsx";
+import { DataWrapper } from "./contexts/DataContext/index.tsx";
 
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
@@ -45,7 +46,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Authenticator.Provider>
         <ModalProvider>
           <ThemeWrapper>
-            <Router />
+            <DataWrapper>
+              <Router />
+            </DataWrapper>
           </ThemeWrapper>
         </ModalProvider>
       </Authenticator.Provider>

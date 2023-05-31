@@ -12,10 +12,9 @@ import { SearchBar } from "../SearchBar";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
-import { useEffect } from "react";
-import { httpService } from "../../services/httpService";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+
 
 const NavItem = ({
   Icon,
@@ -50,14 +49,7 @@ export const DashboardLayout = () => {
   };
 
 
-  const fetchData = async () => {
-    await httpService.get('/')
-    console.log(`Authenticated to api successfully!`)
-  }
-  useEffect(() => {
-    fetchData()
 
-  }, [])
   return (
     <div className={`h-full flex ${isDarkMode ? "dark" : ""} `}>
       <div className="bg-light-secondary dark:bg-dark-secondary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
