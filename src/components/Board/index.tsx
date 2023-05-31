@@ -17,7 +17,7 @@ import { useData } from '../../contexts/DataContext';
 
 export const Board: React.FC = () => {
     const { data } = useData()
-    const columns = data[0].columns
+    const columns = data.length > 0 ? data[0].columns : []
     const { openModal } = useModalContext()
     const handleButtonClick = () => {
         openModal()

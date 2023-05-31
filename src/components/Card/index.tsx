@@ -1,23 +1,14 @@
-import { FaBug } from 'react-icons/fa'
-import { BsFillLightbulbFill, BsBack } from 'react-icons/bs'
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../../pages/Dashboard';
 import { CardInterface } from '../../types';
 
-// interface CardProps {
-//     card: {
-//         title: string;
-//         description: string;
-//         type: string;
-//         state: string
-//     }
-// }
-export const Card = ({ description, title, }: CardInterface) => {
+
+export const Card = ({ description, title, assignee, columnId, createdDate, dueDate, id }: CardInterface) => {
 
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.CARD,
-        item: { description, title },
+        item: { description, title, columnId, id, createdDate, assignee, dueDate },
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging()
         })
@@ -31,7 +22,6 @@ export const Card = ({ description, title, }: CardInterface) => {
 
             }} className="dark:bg-dark-secondary bg-light-secondary max-h-40 min-h-max dark:text-dark-text p-4 rounded-md">
             <span>{title} {description}</span>
-            {/* {type === 'BUG' ? <FaBug /> : type === 'SPIKE' ? <BsFillLightbulbFill /> : type === 'STORY' ? <BsBack /> : null} */}
         </div>
     )
 }

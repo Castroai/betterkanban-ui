@@ -1,34 +1,21 @@
 import { useDrop } from "react-dnd"
 import { Card } from "../Card";
 import { ItemTypes } from "../../pages/Dashboard";
-import { ColumnInterface } from "../../types";
+import { CardInterface, ColumnInterface } from "../../types";
+import { useData } from "../../contexts/DataContext";
 
-interface Card {
-  title: string;
-  description: string;
-  type: string;
-  state: string
-}
 
-export const Column = ({ cards, name }: ColumnInterface) => {
-  // const handleMove = (incomingCard: Card) => {
-  //   setCardState((currentCards) => {
-  //     return currentCards.map((card) => {
-  //       if (card.title === incomingCard.title) {
-  //         return {
-  //           ...card,
-  //           state: title
-  //         }
-  //       }
-  //       return card
-  //     })
-  //   })
-  // }
+export const Column = ({ cards, name, id }: ColumnInterface) => {
+  const { moveCardToColum } = useData()
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.CARD,
-      drop: (data: Card) => {
-        console.log(data)
+      drop: async (data: CardInterface) => {
+        console.log('Here')
+        return await moveCardToColum({
+          cardId: data.id,
+          columnId: id
+        })
       },
       collect: (monitor) => ({
         isOver: !!monitor.isOver()
