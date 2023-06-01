@@ -5,6 +5,7 @@ export interface Response {
     name: string
     userId: number
     columns: ColumnInterface[]
+    cardTypes: CardType[]
 }
 
 export interface ColumnInterface {
@@ -23,4 +24,9 @@ export interface CardInterface {
     assignee: any
     dueDate: any
     createdDate: string
+}
+export interface CardType {
+    id: string
+    name: string
+    tenantId: string
 }
