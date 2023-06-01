@@ -2,9 +2,7 @@ import axios from "axios";
 import { Auth } from 'aws-amplify'
 
 const httpService = axios.create({
-  // baseURL: "https://api.betterkanban.com/",
-  baseURL: "http://localhost:3000/"
-
+  baseURL: import.meta.env.VITE_BASE_API,
 });
 httpService.interceptors.request.use(
   async config => {
