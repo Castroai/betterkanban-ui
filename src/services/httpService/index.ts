@@ -2,7 +2,7 @@ import axios from "axios";
 import { Auth } from 'aws-amplify'
 
 const httpService = axios.create({
-  baseURL: import.meta.env.VITE_BASE_API,
+  baseURL: `${import.meta.env.VITE_BASE_API}/board`,
 });
 httpService.interceptors.request.use(
   async config => {
