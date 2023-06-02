@@ -37,7 +37,7 @@ export const CreateStory = () => {
     const options = data[0].cardTypes || []
 
     return (
-        <div className="w-1/3 h-1/2 bg-light-secondary dark:bg-dark-secondary rounded-md">
+        <div className="w-1/3 h-auto bg-light-secondary dark:bg-dark-secondary rounded-md">
             <form onSubmit={submitHandler} className="p-4 flex flex-col justify-between gap-4 h-full ">
                 <div className="flex justify-between items-center">
                     <div>Create a new Task</div>
