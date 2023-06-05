@@ -1,16 +1,16 @@
 import { useDrop } from "react-dnd"
 import { Card } from "../Card";
 import { ItemTypes } from "../../pages/Dashboard";
-import { CardInterface, ColumnInterface } from "../../types";
 import { useData } from "../../contexts/DataContext";
+import { ColumnsEntity, TasksEntity } from "../../types";
 
 
-export const Column = ({ cards, name, id }: ColumnInterface) => {
+export const Column = ({ tasks, title, id }: ColumnsEntity) => {
   const { moveCardToColum } = useData()
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.CARD,
-      drop: async (data: CardInterface) => {
+      drop: async (data: TasksEntity) => {
         console.log('Here')
         return await moveCardToColum({
           cardId: data.id,
@@ -31,13 +31,16 @@ export const Column = ({ cards, name, id }: ColumnInterface) => {
         width: '100%',
         height: '100%',
       }} className="bg-light-primary w-full h-auto p-4 rounded-md text-center overflow-y-auto">
-      <span className="text-light-text dark:text-dark-text font-semibold">{name}</span>
+      <span className="text-light-text dark:text-dark-text font-semibold">{title}</span>
       <hr />
       <div className="flex flex-col gap-5 pt-4">
-        {cards.map((card) => {
-          return (
-            <Card {...card} key={card.title} />
-          )
+        {tasks && tasks.map((task) => {
+          if (task) {
+            return (
+              <Card {...task} key={task.id} />
+            )
+          } else
+            return null
         })}
       </div>
     </div>

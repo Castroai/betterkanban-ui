@@ -1,32 +1,39 @@
-export type AllBoardResponse = Response[]
-
 export interface Response {
-    id: number
-    name: string
-    userId: number
-    columns: ColumnInterface[]
-    cardTypes: CardType[]
+    id: number;
+    title: string;
+    createdAt: string;
+    updatedAt: string;
+    ownerId: number;
+    tenantId: number;
+    columns?: (ColumnsEntity)[] | null;
 }
-
-export interface ColumnInterface {
-    id: number
-    name: string
-    boardId: number
-    cards: CardInterface[]
+export interface ColumnsEntity {
+    id: number;
+    title: string;
+    order: number;
+    createdAt: string;
+    updatedAt: string;
+    boardId: number;
+    tenantId: number;
+    tasks?: (TasksEntity | null)[] | null;
 }
-
-export interface CardInterface {
-    id: number
-    title: string
-    typeId: number
-    description: string
-    columnId: number
-    assignee: any
-    dueDate: any
-    createdDate: string
+export interface TasksEntity {
+    id: number;
+    title: string;
+    description: string;
+    order: number;
+    createdAt: string;
+    updatedAt: string;
+    columnId: number;
+    assignedToId?: null;
+    cardTypeId: number;
+    tenantId: number;
+    cardType: CardType;
 }
 export interface CardType {
-    id: string
-    name: string
-    tenantId: string
+    id: number;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    tenantId: number;
 }

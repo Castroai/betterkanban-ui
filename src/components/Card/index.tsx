@@ -1,27 +1,36 @@
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../../pages/Dashboard';
-import { CardInterface } from '../../types';
+import Modal from '../Modal';
+import { OpenCard } from '../TaskDetails';
+import { WithModal } from '../../hooks/modalHook';
+import { TasksEntity } from '../../types';
 
 
-export const Card = ({ description, title, assignee, columnId, createdDate, dueDate, id }: CardInterface) => {
-
+export const Card = ({ description, title, columnId, id }: TasksEntity) => {
+    const { closeModal, isOpen, openModal } = WithModal()
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.CARD,
-        item: { description, title, columnId, id, createdDate, assignee, dueDate },
+        item: { description, title, columnId, id, },
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging()
         })
     }))
 
     return (
-        <div ref={drag}
-            style={{
-                opacity: isDragging ? 0.5 : 1,
-                cursor: 'move',
+        <div>
+            <div onClick={openModal} ref={drag}
+                style={{
+                    opacity: isDragging ? 0.5 : 1,
+                    cursor: 'move',
 
-            }} className="dark:bg-dark-secondary bg-light-secondary max-h-40 min-h-max dark:text-dark-text p-4 rounded-md">
-            <span>{title} {description}</span>
+                }} className="dark:bg-dark-secondary bg-light-secondary max-h-40 min-h-max dark:text-dark-text p-4 rounded-md">
+                <span>{title} {description}</span>
+
+            </div>
+            <Modal isOpen={isOpen}>
+                <OpenCard cardId={id} closeModal={closeModal} />
+            </Modal>
         </div>
     )
 }

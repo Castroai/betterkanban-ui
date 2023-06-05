@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
-import { useModalContext } from '../../contexts/ModalContext';
 
-const Modal = ({ children }: { title: string, children: ReactNode }) => {
-    const { isOpen } = useModalContext();
+const Modal = ({ children, isOpen }: { children: ReactNode, isOpen: boolean }) => {
 
     if (!isOpen) {
         return null; // Don't render anything if modal is closed

@@ -1,11 +1,10 @@
 import React from 'react';
 import { Column } from '../Column';
 import { Button } from '../UI/Button';
-import { useModalContext } from '../../contexts/ModalContext';
 import Modal from '../Modal';
-import { CreateStory } from '../CreateStory';
+import { CreateStory } from '../CreateTask';
 import { useData } from '../../contexts/DataContext';
-
+import { WithModal } from '../../hooks/modalHook';
 
 
 // An Item is an object:  { cardId: 42 }
@@ -17,8 +16,7 @@ import { useData } from '../../contexts/DataContext';
 
 export const Board: React.FC = () => {
     const { data } = useData()
-    const columns = data.length > 0 ? data[0].columns : []
-    const { openModal } = useModalContext()
+    const { openModal, isOpen, closeModal } = WithModal()
     const handleButtonClick = () => {
         openModal()
     };
@@ -32,13 +30,14 @@ export const Board: React.FC = () => {
             </div>
             <div className='flex gap-4'>
                 {
-                    columns.map((column) => {
-                        return <Column  {...column} key={column.id} />
-                    })
+
                 }
+                {data && data[0].columns ? data[0].columns.map((column) => {
+                    return <Column  {...column} key={column.id} />
+                }) : null}
             </div>
-            <Modal title='Create a new card' >
-                <CreateStory />
+            <Modal isOpen={isOpen}>
+                <CreateStory closeModal={closeModal} />
             </Modal>
         </div>
     );

@@ -2,7 +2,6 @@ import { withTheme } from "../../contexts/ThemeContext";
 import {
   BsFillPeopleFill,
   BsDashCircle,
-  BsBell,
   BsGear,
   BsDoorClosed,
 } from "react-icons/bs";
@@ -10,7 +9,7 @@ import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import type { IconType } from "react-icons";
 import { SearchBar } from "../SearchBar";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -20,14 +19,18 @@ const NavItem = ({
   Icon,
   label,
   onClick,
+  path
 }: {
   Icon: IconType;
   label?: string;
   onClick?: () => void;
+  path: string
 }) => {
+  const location = useLocation()
+  const isActive = location.pathname === path
   return (
     <div
-      className="flex items-center gap-4 cursor-pointer hover:bg-light-primary dark:hover:bg-dark-primary hover:rounded-md p-1 "
+      className={`flex items-center gap-4 cursor-pointer ${isActive ? 'bg-light-primary text-light-text rounded-md p-2' : ''} hover:bg-light-primary dark:hover:bg-dark-primary hover:rounded-md p-2 `}
       onClick={onClick}
     >
       <Icon /> {label}
@@ -48,20 +51,37 @@ export const DashboardLayout = () => {
     navigate("/");
   };
 
+  const navItems = [{
+    name: 'Board',
+    Icon: <BsDashCircle />,
+    path: '/'
+  }, {
+    name: 'Users',
+    Icon: <BsFillPeopleFill />,
+    path: '/account'
+  }, {
+    name: 'Settings',
+    Icon: <BsGear />,
+    path: '/settings'
+  },
+    // {
+    //   name: 'Analytics',
+    //   Icon: <TbBrandGoogleAnalytics />,
+    //   path: '/analytics'
+    // }
+  ]
 
 
   return (
     <div className={`h-full flex ${isDarkMode ? "dark" : ""} `}>
       <div className="bg-light-secondary dark:bg-dark-secondary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
         <div className="flex flex-col gap-4 ">
-          <NavItem Icon={BsDashCircle} label="Projects" />
-          <NavItem Icon={BsFillPeopleFill} label="Clients" />
-          <NavItem Icon={BsBell} label="Notifications" />
-          <NavItem Icon={TbBrandGoogleAnalytics} label="Analytics" />
-          <NavItem Icon={BsGear} label="Settings" />
+          {navItems.map((item) => {
+            return <NavItem path={item.path} Icon={() => item.Icon} key={item.path} label={item.name} onClick={() => { navigate(item.path) }} />
+          })}
         </div>
         <div>
-          <NavItem Icon={BsDoorClosed} label="logout" onClick={logOut} />
+          <NavItem path="/logout" Icon={BsDoorClosed} label="logout" onClick={logOut} />
         </div>
       </div>
 

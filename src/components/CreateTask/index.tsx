@@ -1,19 +1,17 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { Input } from "../UI/Input"
 import { Button } from "../UI/Button"
-import { useModalContext } from "../../contexts/ModalContext"
 import { useData } from "../../contexts/DataContext"
 
-export const CreateStory = () => {
-    const { closeModal } = useModalContext()
-    const { data, createNewCard } = useData()
+export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
+    const { data, createNewCard, taskTypes } = useData()
     const [state, setState] = useState({
         title: '',
         description: '',
         typeId: 0,
         columnId: 0
     })
-    const columns = data[0].columns || []
+    const columns = data && data[0].columns || []
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         await createNewCard(state)
@@ -34,7 +32,21 @@ export const CreateStory = () => {
         }))
     };
 
-    const options = data[0].cardTypes || []
+
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [closeModal]);
 
     return (
         <div className="w-1/3 h-auto bg-light-secondary dark:bg-dark-secondary rounded-md">
@@ -44,12 +56,12 @@ export const CreateStory = () => {
                     <div className="cursor-pointer" onClick={closeModal}>X</div>
                 </div>
                 <div>
-                    <Input onChange={(e) => {
+                    <Input required onChange={(e) => {
                         setState((current) => ({
                             ...current,
                             title: e.target.value
                         }))
-                    }} label="title" placeholder="title" value={state.title} name="title" required />
+                    }} label="title" placeholder="title" value={state.title} name="title" />
                 </div>
                 <div>
                     <textarea rows={5} cols={40} onChange={(e) => {
@@ -60,9 +72,9 @@ export const CreateStory = () => {
                     }} className="border-2 border-gray-200 rounded-md w-full" placeholder="description" value={state.description} name="description" required />
                 </div>
                 <div>
-                    <select className="bg-gray-100 p-2 rounded-md border-4 w-full" value={state.typeId} onChange={handleSelectTypeChange}>
+                    <select required className="bg-gray-100 p-2 rounded-md border-4 w-full" value={state.typeId} onChange={handleSelectTypeChange}>
                         <option value="">Select an option</option>
-                        {options.map((option) => (
+                        {taskTypes && taskTypes.map((option) => (
                             <option key={option.id} value={option.id}>
                                 {option.name}
                             </option>
@@ -70,11 +82,11 @@ export const CreateStory = () => {
                     </select>
                 </div>
                 <div>
-                    <select className="bg-gray-100 p-2 rounded-md border-4 w-full" value={state.columnId} onChange={handleSelectColumnChange}>
+                    <select required className="bg-gray-100 p-2 rounded-md border-4 w-full" value={state.columnId} onChange={handleSelectColumnChange}>
                         <option value="">Select an Column</option>
                         {columns.map((column) => (
                             <option key={column.id} value={column.id}>
-                                {column.name}
+                                {column.title}
                             </option>
                         ))}
                     </select>
