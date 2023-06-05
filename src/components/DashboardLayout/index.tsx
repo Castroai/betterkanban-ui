@@ -5,7 +5,6 @@ import {
   BsGear,
   BsDoorClosed,
 } from "react-icons/bs";
-import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import type { IconType } from "react-icons";
 import { SearchBar } from "../SearchBar";
 import { useAuthenticator } from "@aws-amplify/ui-react";
