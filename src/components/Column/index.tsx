@@ -30,8 +30,8 @@ export const Column = ({ tasks, title, id }: ColumnsEntity) => {
         position: 'relative',
         width: '100%',
         height: '100%',
-      }} className="bg-light-primary w-full h-auto p-4 rounded-md text-center overflow-y-auto">
-      <span className="text-light-text dark:text-dark-text font-semibold">{title}</span>
+      }} className="w-full h-auto p-4 rounded-md text-center overflow-y-auto">
+      <span className="text-light-text font-semibold">{title}</span>
       <hr />
       <div className="flex flex-col gap-5 pt-4">
         {tasks && tasks.map((task) => {

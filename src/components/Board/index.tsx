@@ -21,7 +21,7 @@ export const Board: React.FC = () => {
         openModal()
     };
     return (
-        <div className=' p-4 flex flex-1 flex-col gap-4 dark:bg-dark-secondary bg-light-secondary rounded-md'>
+        <div className=' p-4 flex flex-1 flex-col gap-4 dark:bg-dark-secondary  rounded-md'>
             <div className='flex justify-between items-center'>
                 <div>
                     SPRINT INFO GOES HERE

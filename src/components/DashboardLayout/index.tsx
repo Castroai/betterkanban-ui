@@ -63,11 +63,6 @@ export const DashboardLayout = () => {
     Icon: <BsGear />,
     path: '/settings'
   },
-    // {
-    //   name: 'Analytics',
-    //   Icon: <TbBrandGoogleAnalytics />,
-    //   path: '/analytics'
-    // }
   ]
 
 

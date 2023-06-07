@@ -5,7 +5,6 @@ import { useData } from "../../contexts/DataContext"
 import { httpService } from "../../services/httpService"
 import { PromptResponse } from "../../types"
 
-
 export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
     const { data, createNewCard, taskTypes } = useData()
     const [generating, setGenerating] = useState(false)
@@ -16,10 +15,7 @@ export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
         columnId: 0
     })
     const [promptResponse, setPromptResponse] = useState<PromptResponse | null>(null)
-
-
     const [prompt, setPrompt] = useState('As a customer I want to create signup page so that new customer can create an account')
-
     const columns = data && data[0].columns || []
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -43,8 +39,6 @@ export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
             columnId: parseInt(value)
         }))
     };
-
-
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
@@ -75,7 +69,7 @@ export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
 
     }
     return (
-        <div className="w-1/3 h-auto bg-light-secondary dark:bg-dark-secondary rounded-md">
+        <div className="w-full m-10 min-w-max h-auto bg-light-secondary dark:bg-dark-secondary rounded-md">
             <form onSubmit={submitHandler} className="p-4 flex flex-col justify-between gap-4 h-full ">
                 <div className="flex justify-between items-center">
                     <div>Create a new Task</div>
@@ -94,7 +88,9 @@ export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
                     setPrompt(e.target.value)
                 }} />
 
-                <Button type="button" onClick={submitPrompt}>Generate</Button>
+                <div className="flex" >
+                    <Button type="button" onClick={submitPrompt}>Generate</Button>
+                </div>
                 <hr />
                 <div>
                     {generating ? 'Using AI Magic....' : <div className="flex flex-col" >

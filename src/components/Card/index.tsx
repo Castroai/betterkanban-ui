@@ -8,7 +8,6 @@ import { TasksEntity } from '../../types';
 
 export const Card = ({ description, title, columnId, id }: TasksEntity) => {
     const { closeModal, isOpen, openModal } = WithModal()
-
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.CARD,
         item: { description, title, columnId, id, },
@@ -16,13 +15,12 @@ export const Card = ({ description, title, columnId, id }: TasksEntity) => {
             isDragging: !!monitor.isDragging()
         })
     }))
-
     return (
-        <div>
+        <div className=''>
             <div onClick={openModal} ref={drag}
                 style={{
                     opacity: isDragging ? 0.5 : 1,
-                    cursor: 'move',
+                    cursor: isDragging ? 'move' : 'pointer',
 
                 }} className="dark:bg-dark-secondary bg-light-secondary max-h-40 min-h-max dark:text-dark-text p-4 rounded-md">
                 <span>{title}</span>
