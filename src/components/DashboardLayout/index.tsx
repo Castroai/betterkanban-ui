@@ -11,7 +11,6 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
 import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend'
 
 
