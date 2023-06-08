@@ -21,17 +21,14 @@ export const Board: React.FC = () => {
         openModal()
     };
     return (
-        <div className=' p-4 flex flex-1 flex-col gap-4 dark:bg-dark-secondary  rounded-md'>
+        <div className=' p-4 flex flex-col gap-4 dark:bg-dark-secondary  rounded-md'>
             <div className='flex justify-between items-center'>
                 <div>
                     SPRINT INFO GOES HERE
                 </div>
                 <div><Button onClick={handleButtonClick}>Create Card</Button></div>
             </div>
-            <div className='flex gap-4'>
-                {
-
-                }
+            <div className='flex flex-col md:flex-row gap-4'>
                 {data && data[0].columns ? data[0].columns.map((column) => {
                     return <Column  {...column} key={column.id} />
                 }) : null}

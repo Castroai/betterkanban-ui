@@ -22,7 +22,7 @@ export const Card = ({ description, title, columnId, id }: TasksEntity) => {
                     opacity: isDragging ? 0.5 : 1,
                     cursor: isDragging ? 'move' : 'pointer',
 
-                }} className="dark:bg-dark-secondary bg-light-secondary max-h-40 min-h-max dark:text-dark-text p-4 rounded-md">
+                }} className="dark:bg-dark-secondary h-40 bg-light-primary  dark:text-dark-text p-4 rounded-md">
                 <span>{title}</span>
                 <div>
                     {description.substring(0, 15)} {description.length > 15 ? '......' : ''}

@@ -84,7 +84,7 @@ export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
                     }} label="title" placeholder="title" value={state.title} name="title" />
                 </div>
                 <span>Prompt</span>
-                <textarea placeholder={placeHolderPrompt} className="border-2 border-gray-200 rounded-md w-full" value={prompt} onChange={(e) => {
+                <textarea placeholder={placeHolderPrompt} className="p-2 rounded-md border-gray-200  w-full" value={prompt} onChange={(e) => {
                     setPrompt(e.target.value)
                 }} />
 
@@ -93,19 +93,19 @@ export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
                 </div>
                 <hr />
                 <div>
-                    {generating ? 'Using AI Magic....' : <div className="flex flex-col" >
+                    {generating ? 'Generating Prompt using AI' : <div className="flex flex-col" >
                         <span>Details</span>
                         <textarea aria-placeholder={placeHolderPrompt} rows={5} cols={40} onChange={(e) => {
                             setState((current) => ({
                                 ...current,
                                 description: e.target.value
                             }))
-                        }} className="border-2 border-gray-200 rounded-md w-full h-auto" value={promptResponse && promptResponse.choices[0].message.content || ""} name="description" required />
+                        }} className="p-2 rounded-md border-gray-200  w-full h-auto" value={promptResponse && promptResponse.choices[0].message.content || ""} name="description" required />
                     </div>}
 
                 </div>
                 <div>
-                    <select required className="bg-gray-100 p-2 rounded-md border-4 w-full" value={state.typeId} onChange={handleSelectTypeChange}>
+                    <select required className=" p-2 rounded-md  w-full" value={state.typeId} onChange={handleSelectTypeChange}>
                         <option value="">Select Task Type</option>
                         {taskTypes && taskTypes.map((option) => (
                             <option key={option.id} value={option.id}>
@@ -115,7 +115,7 @@ export const CreateStory = ({ closeModal }: { closeModal: () => void }) => {
                     </select>
                 </div>
                 <div>
-                    <select required className="bg-gray-100 p-2 rounded-md border-4 w-full" value={state.columnId} onChange={handleSelectColumnChange}>
+                    <select required className="p-2 rounded-md w-full" value={state.columnId} onChange={handleSelectColumnChange}>
                         <option value="">Select an Column</option>
                         {columns.map((column) => (
                             <option key={column.id} value={column.id}>

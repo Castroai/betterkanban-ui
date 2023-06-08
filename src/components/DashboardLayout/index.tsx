@@ -12,6 +12,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend'
 
 
 const NavItem = ({
@@ -68,7 +69,7 @@ export const DashboardLayout = () => {
 
   return (
     <div className={`h-full flex ${isDarkMode ? "dark" : ""} `}>
-      <div className="bg-light-secondary dark:bg-dark-secondary w-48 p-4 justify-between flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
+      <div className="bg-light-secondary dark:bg-dark-secondary md:w-48 hidden p-4 justify-between md:flex flex-col items-start pt-10 pb-10 dark:text-dark-text text-light-text">
         <div className="flex flex-col gap-4 ">
           {navItems.map((item) => {
             return <NavItem path={item.path} Icon={() => item.Icon} key={item.path} label={item.name} onClick={() => { navigate(item.path) }} />
@@ -101,7 +102,7 @@ export const DashboardLayout = () => {
 
         </div>
         <div className="p-4 bg-light-primary flex flex-1 dark:bg-dark-primary ">
-          <DndProvider backend={HTML5Backend} >
+          <DndProvider backend={TouchBackend} >
             <Outlet />
           </DndProvider>
         </div>
