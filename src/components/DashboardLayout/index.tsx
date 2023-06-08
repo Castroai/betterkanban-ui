@@ -13,7 +13,6 @@ import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend'
 
-
 const NavItem = ({
   Icon,
   label,
@@ -101,7 +100,10 @@ export const DashboardLayout = () => {
 
         </div>
         <div className="p-4 bg-light-primary flex flex-1 dark:bg-dark-primary ">
-          <DndProvider backend={TouchBackend} >
+          <DndProvider backend={TouchBackend} options={{
+            enableMouseEvents: true,
+            enableHoverOutsideTarget: true,
+          }} >
             <Outlet />
           </DndProvider>
         </div>
