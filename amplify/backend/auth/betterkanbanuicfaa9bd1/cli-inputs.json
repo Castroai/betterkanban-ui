@@ -64,6 +64,6 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5437/\",\"https://www.betterkanban.com/\"],\"LogoutURLs\":[\"http://localhost:5437/\",\"https://www.betterkanban.com/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:5437/dashboard/\",\"https://www.betterkanban.com/dashboard/\"],\"LogoutURLs\":[\"http://localhost:5437/\",\"https://www.betterkanban.com/\"]}"
   }
 }

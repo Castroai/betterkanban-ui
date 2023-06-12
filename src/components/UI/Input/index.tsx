@@ -13,7 +13,7 @@ export const Input = ({ label, id, ...props }: InputProps) => {
       <input
         id={id}
         {...props}
-        className="p-2 rounded-md"
+        className="p-2 rounded-md border-light-secondary border-2"
       />
     </div>
   );
