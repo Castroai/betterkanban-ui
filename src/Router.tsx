@@ -7,6 +7,7 @@ import { PrivateRoute } from "./components/ProtectedRoute";
 import { SignIn } from "./pages/Signin";
 import { HomePage } from "./pages/Home";
 import { Invite } from "./pages/Invite";
+import { DataWrapper } from "./contexts/DataContext";
 const Router = () => {
   return (
     <Routes>
@@ -14,7 +15,9 @@ const Router = () => {
         path="dashboard"
         element={
           <PrivateRoute>
-            <DashboardLayout />
+            <DataWrapper>
+              <DashboardLayout />
+            </DataWrapper>
           </PrivateRoute>
         }
       >

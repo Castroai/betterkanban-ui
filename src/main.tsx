@@ -43,9 +43,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <AuthWrapper>
         <ThemeWrapper>
-          <DataWrapper>
-            <Router />
-          </DataWrapper>
+          <Router />
         </ThemeWrapper>
       </AuthWrapper>
     </BrowserRouter>
