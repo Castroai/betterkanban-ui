@@ -7,7 +7,6 @@ import { Amplify } from "aws-amplify";
 import "./index.css";
 
 import awsExports from "./aws-exports";
-import { DataWrapper } from "./contexts/DataContext/index.tsx";
 import { AuthWrapper } from "./contexts/AuthContext/index.tsx";
 
 const isLocalhost = Boolean(
