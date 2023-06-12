@@ -1,10 +1,6 @@
 import { withTheme } from "../../contexts/ThemeContext";
-import {
-  BsFillPeopleFill,
-  BsDashCircle,
-  BsGear,
-  BsDoorClosed,
-} from "react-icons/bs";
+import { BsFillPeopleFill, BsGear, BsDoorClosed } from "react-icons/bs";
+import { GrTask } from "react-icons/gr";
 import type { IconType } from "react-icons";
 import { SearchBar } from "../SearchBar";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
@@ -13,6 +9,7 @@ import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import { usePreview } from "react-dnd-preview";
 import { useAuth } from "../../contexts/AuthContext";
+
 import { Auth } from "aws-amplify";
 const NavItem = ({
   Icon,
@@ -52,11 +49,11 @@ export const DashboardLayout = () => {
   const navItems = [
     {
       name: "Board",
-      Icon: <BsDashCircle />,
+      Icon: <GrTask />,
       path: "/dashboard",
     },
     {
-      name: "Users",
+      name: "Account",
       Icon: <BsFillPeopleFill />,
       path: "/dashboard/account",
     },

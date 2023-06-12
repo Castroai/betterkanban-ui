@@ -6,6 +6,7 @@ import { Settings } from "./pages/Settings";
 import { PrivateRoute } from "./components/ProtectedRoute";
 import { SignIn } from "./pages/Signin";
 import { HomePage } from "./pages/Home";
+import { Invite } from "./pages/Invite";
 const Router = () => {
   return (
     <Routes>
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="settings" element={<Settings />} />
       </Route>
       <Route path="/" element={<HomePage />} />
+      <Route path="/invite" element={<Invite />} />
       <Route path="/login" element={<SignIn />} />
     </Routes>
   );
